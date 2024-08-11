@@ -5,18 +5,19 @@ interface PlaceImagesProps {
     images: string[];
 }
 
-
 function PlaceImages({images}: PlaceImagesProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const prevSlide = () => {
+    const prevSlide = (e: React.MouseEvent) => {
+        e.stopPropagation();
         setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? images.length - 1 : prevIndex - 1
         );
     };
 
-    const nextSlide = () => {
+    const nextSlide = (e: React.MouseEvent) => {
+        e.stopPropagation();
         setCurrentIndex((prevIndex) =>
             prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
@@ -66,11 +67,17 @@ function PlaceImages({images}: PlaceImagesProps) {
             {isModalOpen && (
                 <div className="modal" onClick={closeModal}>
                     <span className="close-modal">&times;</span>
+                    <button className="modal-button prev-button" onClick={prevSlide}>
+                        &#10094;
+                    </button>
                     <img
                         className="modal-content"
                         src={images[currentIndex]}
                         alt={`Original Slide ${currentIndex}`}
                     />
+                    <button className="modal-button next-button" onClick={nextSlide}>
+                        &#10095;
+                    </button>
                 </div>
             )}
         </div>

@@ -49,7 +49,8 @@
     right: 10px;
 }
 
-.slider-button:hover {
+.slider-button:hover,
+.modal-button:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -102,4 +103,26 @@
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
+    z-index: 5;
+}
+
+.modal-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 6;
+}
+
+.modal-button.prev-button {
+    left: 20px;
+}
+
+.modal-button.next-button {
+    right: 20px;
 }
