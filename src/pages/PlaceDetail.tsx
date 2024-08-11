@@ -36,9 +36,9 @@ function PlaceDetail() {
 
     return (
         <div>
+            <PlaceImages images={place.images} />
             <PlaceName name={place.name} />
             <PlaceAddress address={place.address} />
-            <PlaceImages images={place.images} />
             <PlaceDescription description={place.description} />
             <CommentList comments={comments} onDelete={handleDeleteComment} />
             <CommentForm onAddComment={handleAddComment} />
