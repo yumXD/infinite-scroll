@@ -8,7 +8,14 @@ export const fetchPlaces = async (page: number): Promise<Place[]> => {
         const response = await axios.get<{ data: Place[] }>(`${API_BASE_URL}/places`, {
             params: { page },
         });
-        return response.data.data;
+        const places = response.data.data;
+
+        // 중복 제거: name을 기준으로 중복된 항목 필터링
+        const uniquePlaces = places.filter((place: Place, index: number, self: Place[]) =>
+            index === self.findIndex((p) => p.name === place.name)
+        );
+
+        return uniquePlaces;
     } catch (error) {
         console.error('Failed to fetch places', error);
         throw error;
