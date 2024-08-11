@@ -1,0 +1,33 @@
+.place-detail-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.place-detail-main {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    width: 400px;
+    height: 300px;
+    position: relative;
+}
+
+.place-detail-info {
+    flex: 1;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.place-detail-comments {
+    margin-top: 20px;
+}
+
+.place-detail-info > * {
+    margin-bottom: 10px;
+}

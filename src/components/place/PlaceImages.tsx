@@ -5,15 +5,19 @@ interface PlaceImagesProps {
     images: string[];
 }
 
-function PlaceImages({images}: PlaceImagesProps) {
+function PlaceImages({ images }: PlaceImagesProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const prevSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? images.length - 1 : prevIndex - 1
+        );
     };
 
     const nextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+        setCurrentIndex((prevIndex) =>
+            prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        );
     };
 
     return (
@@ -26,20 +30,23 @@ function PlaceImages({images}: PlaceImagesProps) {
                     <img
                         key={index}
                         src={image}
-                        alt={`place-image-${index}`}
-                        className={`slider-image ${index === currentIndex ? 'active' : ''}`}
+                        alt={`Slide ${index}`}
+                        className={`slider-image ${
+                            index === currentIndex ? 'active' : ''
+                        }`}
                     />
                 ))}
             </div>
             <button className="slider-button next-button" onClick={nextSlide}>
                 &#10095;
             </button>
-
             <div className="dots-container">
                 {images.map((_, index) => (
                     <span
                         key={index}
-                        className={`dot ${index === currentIndex ? 'active' : ''}`}
+                        className={`dot ${
+                            index === currentIndex ? 'active' : ''
+                        }`}
                     ></span>
                 ))}
             </div>

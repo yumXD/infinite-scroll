@@ -1,13 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { placeListState } from '../recoil/placeState';
+import {useParams} from 'react-router-dom';
+import {useRecoilValue} from 'recoil';
+import {placeListState} from '../recoil/placeState';
 import PlaceName from '../components/place/PlaceName';
 import PlaceAddress from '../components/place/PlaceAddress';
 import PlaceDescription from '../components/place/PlaceDescription';
 import PlaceImages from '../components/place/PlaceImages';
 import CommentList from '../components/comment/CommentList';
 import CommentForm from '../components/comment/CommentForm';
+import '../styles/PlaceDetail.css';
 
 interface Comment {
     id: number;
@@ -35,13 +36,21 @@ function PlaceDetail() {
     };
 
     return (
-        <div>
-            <PlaceImages images={place.images} />
-            <PlaceName name={place.name} />
-            <PlaceAddress address={place.address} />
-            <PlaceDescription description={place.description} />
-            <CommentList comments={comments} onDelete={handleDeleteComment} />
-            <CommentForm onAddComment={handleAddComment} />
+        <div className="place-detail-container">
+            <div className="place-detail-main">
+                <div className="image-container">
+                    <PlaceImages images={place.images} />
+                </div>
+                <div className="place-detail-info">
+                    <PlaceName name={place.name} />
+                    <PlaceAddress address={place.address} />
+                    <PlaceDescription description={place.description} />
+                </div>
+            </div>
+            <div className="place-detail-comments">
+                <CommentList comments={comments} onDelete={handleDeleteComment} />
+                <CommentForm onAddComment={handleAddComment} />
+            </div>
         </div>
     );
 }
