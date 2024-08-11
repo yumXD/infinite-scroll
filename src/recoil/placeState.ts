@@ -22,3 +22,12 @@ export const filteredPlacesState = selector<Place[]>({
             : places.filter((place) => place.category === category);
     },
 });
+
+export const categoryListState = selector<string[]>({
+    key: 'categoryListState',
+    get: ({ get }) => {
+        const places = get(placeListState);
+        const categories = places.map((place) => place.category);
+        return Array.from(new Set(categories));
+    },
+});

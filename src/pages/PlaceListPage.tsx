@@ -24,6 +24,7 @@ function PlaceListPage() {
 
     return (
         <div>
+            <Filter/>
             <PlaceList places={filteredPlaces}/>
         </div>
     );
