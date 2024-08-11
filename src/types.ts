@@ -6,3 +6,8 @@ export interface Place {
     description: string;
     images: string[];
 }
+
+export interface Comment {
+    id: number;
+    text: string;
+}
