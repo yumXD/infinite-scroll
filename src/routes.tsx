@@ -8,12 +8,16 @@ import Footer from "./components/Footer";
 const AppRoutes = () => {
     return (
         <BrowserRouter>
-            <Navbar logoSrc="logo.png"/>
-            <Routes>
-                <Route path="/" element={<PlaceListPage/>}/>
-                <Route path="/places/:name" element={<PlaceDetail/>}/>
-            </Routes>
-            <Footer/>
+            <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
+                <Navbar logoSrc="logo.png"/>
+                <div style={{flex: 1, overflowY: 'auto'}}>
+                    <Routes>
+                        <Route path="/" element={<PlaceListPage/>}/>
+                        <Route path="/places/:name" element={<PlaceDetail/>}/>
+                    </Routes>
+                </div>
+                <Footer/>
+            </div>
         </BrowserRouter>
     );
 };
