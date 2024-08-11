@@ -4,7 +4,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     overflow: hidden;
 }
 
@@ -14,14 +14,24 @@
 
 .place-thumbnail {
     width: 450px;
-    height: 350px;
+    height: 250px;
     object-fit: cover;
     border-radius: 8px;
 }
 
 .place-info {
-    margin-left: 20px;
+    margin-left: 15px;
     flex-grow: 1;
+}
+
+.place-info h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.place-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.4em;
 }
 
 .place-info h3 a {
@@ -36,4 +46,5 @@
 .place-info p {
     margin: 0;
     color: #666;
+    font-size: 0.9em;
 }
