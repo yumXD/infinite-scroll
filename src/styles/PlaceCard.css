@@ -1,0 +1,40 @@
+.place-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.thumbnail-link {
+    flex-shrink: 0;
+}
+
+.place-thumbnail {
+    width: 450px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.place-info {
+    margin-left: 20px;
+    flex-grow: 1;
+}
+
+.place-info a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.place-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+}
+
+.place-info p {
+    margin: 0;
+    color: #666;
+}

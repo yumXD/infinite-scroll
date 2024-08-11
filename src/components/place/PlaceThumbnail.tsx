@@ -6,7 +6,11 @@ interface PlaceThumbnailProps {
 }
 
 function PlaceThumbnail({thumbnail, altText}: PlaceThumbnailProps) {
-    return <img src={thumbnail} alt={altText}/>;
+    return <img
+        src={thumbnail}
+        alt={altText}
+        className="place-thumbnail"
+    />;
 }
 
 export default PlaceThumbnail;

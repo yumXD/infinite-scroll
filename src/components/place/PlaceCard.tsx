@@ -3,6 +3,7 @@ import PlaceThumbnail from './PlaceThumbnail';
 import PlaceName from './PlaceName';
 import PlaceAddress from './PlaceAddress';
 import {Link} from 'react-router-dom';
+import '../../styles/PlaceCard.css'
 
 interface PlaceCardProps {
     name: string;
@@ -10,16 +11,21 @@ interface PlaceCardProps {
     address: string;
 }
 
-function PlaceCard({name, thumbnail, address}: PlaceCardProps) {
+function PlaceCard({ name, thumbnail, address }: PlaceCardProps) {
     return (
-        <Link to={`/places/${name}`}>
-            <div>
-                <PlaceThumbnail thumbnail={thumbnail} altText={name}/>
-                <PlaceName name={name}/>
-                <PlaceAddress address={address}/>
+        <div className="place-card">
+            <Link to={`/places/${name}`} className="thumbnail-link">
+                <PlaceThumbnail thumbnail={thumbnail} altText={name} />
+            </Link>
+            <div className="place-info">
+                <Link to={`/places/${name}`}>
+                    <PlaceName name={name} />
+                </Link>
+                <PlaceAddress address={address} />
             </div>
-        </Link>
+        </div>
     );
 }
+
 
 export default PlaceCard;
