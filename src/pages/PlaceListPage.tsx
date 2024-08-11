@@ -1,16 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {fetchPlaces} from '../api';
-import {filteredPlacesState, placeListState} from '../recoil/placeState';
+import {filteredPlacesState, hasMoreState, loadingState, pageState, placeListState} from '../recoil/placeState';
 import PlaceList from '../components/place/PlaceList';
 import Filter from '../components/Filter';
 
 function PlaceListPage() {
     const [places, setPlaces] = useRecoilState(placeListState);
     const filteredPlaces = useRecoilValue(filteredPlacesState);
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
+    const [page, setPage] = useRecoilState(pageState);
+    const [loading, setLoading] = useRecoilState(loadingState);
+    const [hasMore, setHasMore] = useRecoilState(hasMoreState);
     const observer = useRef<IntersectionObserver | null>(null);
     const lastPlaceElementRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,7 +29,7 @@ function PlaceListPage() {
         };
 
         loadPlaces();
-    }, [page, setPlaces]);
+    }, [page, setPlaces, setLoading, setHasMore]);
 
     useEffect(() => {
         if (loading) return;
@@ -44,7 +44,7 @@ function PlaceListPage() {
         if (lastPlaceElementRef.current) {
             observer.current.observe(lastPlaceElementRef.current);
         }
-    }, [loading, hasMore]);
+    }, [loading, hasMore, setPage]);
 
     return (
         <div>

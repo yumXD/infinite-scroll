@@ -11,6 +11,21 @@ export const selectedCategoryState = atom<string>({
     default: 'All',
 });
 
+export const pageState = atom<number>({
+    key: 'pageState',
+    default: 1,
+});
+
+export const loadingState = atom<boolean>({
+    key: 'loadingState',
+    default: false,
+});
+
+export const hasMoreState = atom<boolean>({
+    key: 'hasMoreState',
+    default: true,
+});
+
 export const filteredPlacesState = selector<Place[]>({
     key: 'filteredPlacesState',
     get: ({ get }) => {
