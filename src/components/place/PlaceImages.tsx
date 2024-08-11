@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../../styles/PlaceImages.css';
+import {useRecoilState} from "recoil";
+import {currentIndexState, isModalOpenState} from "../../recoil/modalState";
 
 interface PlaceImagesProps {
     images: string[];
 }
 
 function PlaceImages({images}: PlaceImagesProps) {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentIndex, setCurrentIndex] = useRecoilState(currentIndexState);
+    const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
 
     const prevSlide = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -65,19 +67,21 @@ function PlaceImages({images}: PlaceImagesProps) {
             </div>
 
             {isModalOpen && (
-                <div className="modal" onClick={closeModal}>
-                    <span className="close-modal">&times;</span>
-                    <button className="modal-button prev-button" onClick={prevSlide}>
-                        &#10094;
-                    </button>
-                    <img
-                        className="modal-content"
-                        src={images[currentIndex]}
-                        alt={`Original Slide ${currentIndex}`}
-                    />
-                    <button className="modal-button next-button" onClick={nextSlide}>
-                        &#10095;
-                    </button>
+                <div className="modal-background" onClick={closeModal}>
+                    <div className="modal-content-wrapper" onClick={(e) => e.stopPropagation()}>
+                        <span className="close-modal" onClick={closeModal}>&times;</span>
+                        <button className="modal-button prev-button" onClick={prevSlide}>
+                            &#10094;
+                        </button>
+                        <img
+                            className="modal-content"
+                            src={images[currentIndex]}
+                            alt={`Original Slide ${currentIndex}`}
+                        />
+                        <button className="modal-button next-button" onClick={nextSlide}>
+                            &#10095;
+                        </button>
+                    </div>
                 </div>
             )}
         </div>
