@@ -1,5 +1,5 @@
-import { atom, selector } from 'recoil';
-import { Place } from '../types';
+import {atom, selector} from 'recoil';
+import {Place} from '../types';
 
 export const placeListState = atom<Place[]>({
     key: 'placeListState',
@@ -28,19 +28,21 @@ export const hasMoreState = atom<boolean>({
 
 export const filteredPlacesState = selector<Place[]>({
     key: 'filteredPlacesState',
-    get: ({ get }) => {
-        const category = get(selectedCategoryState);
+    get: ({get}) => {
         const places = get(placeListState);
+        const selectedCategory = get(selectedCategoryState);
 
-        return category === 'All'
-            ? places
-            : places.filter((place) => place.category === category);
+        if (selectedCategory === 'All') {
+            return places;
+        }
+
+        return places.filter((place) => place.category === selectedCategory);
     },
 });
 
 export const categoryListState = selector<string[]>({
     key: 'categoryListState',
-    get: ({ get }) => {
+    get: ({get}) => {
         const places = get(placeListState);
         const categories = places.map((place) => place.category);
         return Array.from(new Set(categories));
