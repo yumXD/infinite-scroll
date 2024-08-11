@@ -11,21 +11,18 @@ interface PlaceCardProps {
     address: string;
 }
 
-function PlaceCard({ name, thumbnail, address }: PlaceCardProps) {
+function PlaceCard({name, thumbnail, address}: PlaceCardProps) {
     return (
         <div className="place-card">
             <Link to={`/places/${name}`} className="thumbnail-link">
-                <PlaceThumbnail thumbnail={thumbnail} altText={name} />
+                <PlaceThumbnail thumbnail={thumbnail} altText={name}/>
             </Link>
             <div className="place-info">
-                <Link to={`/places/${name}`}>
-                    <PlaceName name={name} />
-                </Link>
-                <PlaceAddress address={address} />
+                <PlaceName name={name}/>
+                <PlaceAddress address={address}/>
             </div>
         </div>
     );
 }
-
 
 export default PlaceCard;

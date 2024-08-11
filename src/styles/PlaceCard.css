@@ -24,14 +24,13 @@
     flex-grow: 1;
 }
 
-.place-info a {
+.place-info h3 a {
     text-decoration: none;
     color: inherit;
 }
 
-.place-info h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.5em;
+.place-info h3 a:hover {
+    text-decoration: underline;
 }
 
 .place-info p {
