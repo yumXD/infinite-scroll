@@ -1,21 +1,24 @@
 import React from 'react';
+import { Place } from '../../types';
 import PlaceCard from './PlaceCard';
-import {Place} from "../../types";
 
 interface PlaceListProps {
     places: Place[];
+    lastPlaceElementRef: React.RefObject<HTMLDivElement>;
 }
 
-function PlaceList({places}: PlaceListProps) {
+function PlaceList({ places, lastPlaceElementRef }: PlaceListProps) {
     return (
         <ul>
             {places.map((place, index) => (
                 <li key={`${place.name}-${index}`}>
-                    <PlaceCard
-                        name={place.name}
-                        thumbnail={place.thumbnail}
-                        address={place.address}
-                    />
+                    <div ref={index === places.length - 1 ? lastPlaceElementRef : null}>
+                        <PlaceCard
+                            name={place.name}
+                            thumbnail={place.thumbnail}
+                            address={place.address}
+                        />
+                    </div>
                 </li>
             ))}
         </ul>
