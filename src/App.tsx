@@ -1,11 +1,8 @@
 import React from 'react';
+import AppRoutes from "./routes";
 
-function App() {
-    return (
-        <div>
-            <h1>React & TS!</h1>
-        </div>
-    );
-}
+const App = () => {
+    return <AppRoutes/>;
+};
 
 export default App;
