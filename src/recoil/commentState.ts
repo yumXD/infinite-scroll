@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import {atom, atomFamily} from 'recoil';
 
 interface Comment {
     id: number;
@@ -13,4 +13,19 @@ export const commentListState = atom<Comment[]>({
 export const commentFormVisibilityState = atom<boolean>({
     key: 'commentFormVisibilityState',
     default: false,
+});
+
+export const isEditingState = atomFamily<boolean, number>({
+    key: 'isEditingState',
+    default: false,
+});
+
+export const editedTextState = atomFamily<string, number>({
+    key: 'editedTextState',
+    default: '',
+});
+
+export const commentFormTextState = atomFamily<string, number | string>({
+    key: 'commentFormTextState',
+    default: '',
 });

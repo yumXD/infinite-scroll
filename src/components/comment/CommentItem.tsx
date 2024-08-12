@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../../styles/CommentItem.css';
+import {useRecoilState} from "recoil";
+import {editedTextState, isEditingState} from "../../recoil/commentState";
 
 interface CommentItemProps {
     comment: { id: number; text: string };
@@ -8,8 +10,8 @@ interface CommentItemProps {
 }
 
 function CommentItem({comment, onDelete, onUpdate}: CommentItemProps) {
-    const [isEditing, setIsEditing] = useState(false);
-    const [editedText, setEditedText] = useState(comment.text);
+    const [isEditing, setIsEditing] = useRecoilState(isEditingState(comment.id));
+    const [editedText, setEditedText] = useRecoilState(editedTextState(comment.id));
 
     const handleSave = () => {
         onUpdate(comment.id, editedText);
