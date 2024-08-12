@@ -3,14 +3,19 @@ import {Link} from 'react-router-dom';
 
 interface PlaceNameProps {
     name: string;
+    isLink: boolean;
 }
 
-function PlaceName({name}: PlaceNameProps) {
+function PlaceName({name, isLink}: PlaceNameProps) {
     return (
         <h3 className="place-name">
-            <Link to={`/places/${name}`}>
-                {name}
-            </Link>
+            {isLink ? (
+                <Link to={`/places/${name}`}>
+                    {name}
+                </Link>
+            ) : (
+                name
+            )}
         </h3>
     );
 }

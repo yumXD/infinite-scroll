@@ -18,7 +18,7 @@ function PlaceCard({name, thumbnail, address}: PlaceCardProps) {
                 <PlaceThumbnail thumbnail={thumbnail} altText={name}/>
             </Link>
             <div className="place-info">
-                <PlaceName name={name}/>
+                <PlaceName name={name} isLink={true} />
                 <PlaceAddress address={address}/>
             </div>
         </div>
