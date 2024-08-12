@@ -39,7 +39,7 @@ function PlaceDetail() {
             id: Date.now(),
             text,
         };
-        setComments([...comments, newComment]);
+        setComments([newComment, ...comments]);
     };
 
     const handleDeleteComment = (commentId: number) => {
