@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 const AppRoutes = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
                 <Navbar logoSrc="logo.png"/>
                 <div style={{flex: 1, overflowY: 'auto'}}>
