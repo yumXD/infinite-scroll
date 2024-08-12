@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../../styles/CommentList.css';
+import React, {useState} from 'react';
+import '../../styles/CommentItem.css';
 
 interface CommentItemProps {
     comment: { id: number; text: string };
@@ -7,36 +7,38 @@ interface CommentItemProps {
     onUpdate: (id: number, newText: string) => void;
 }
 
-function CommentItem({ comment, onDelete, onUpdate }: CommentItemProps) {
+function CommentItem({comment, onDelete, onUpdate}: CommentItemProps) {
     const [isEditing, setIsEditing] = useState(false);
-    const [newText, setNewText] = useState(comment.text);
+    const [editedText, setEditedText] = useState(comment.text);
 
     const handleSave = () => {
-        onUpdate(comment.id, newText);
+        onUpdate(comment.id, editedText);
         setIsEditing(false);
     };
 
     return (
         <div className="comment-item">
             {isEditing ? (
-                <div>
-                    <textarea
-                        value={newText}
-                        onChange={(e) => setNewText(e.target.value)}
-                        style={{ width: '100%', padding: '5px' }}
-                    />
-                    <button onClick={handleSave}>저장</button>
-                </div>
+                <textarea
+                    className="edit-textarea"
+                    value={editedText}
+                    onChange={(e) => setEditedText(e.target.value)}
+                />
             ) : (
-                <p>{comment.text}</p>
+                <p className="comment-text">{comment.text}</p>
             )}
-            <div>
-                <button onClick={() => setIsEditing(!isEditing)} style={{ marginRight: '10px' }}>
-                    {isEditing ? '취소' : '수정'}
-                </button>
-                <button onClick={() => onDelete(comment.id)} style={{ color: 'red' }}>
-                    삭제
-                </button>
+            <div className="comment-actions">
+                {isEditing ? (
+                    <>
+                        <button className="save-button" onClick={handleSave}>저장</button>
+                        <button className="cancel-button" onClick={() => setIsEditing(false)}>취소</button>
+                    </>
+                ) : (
+                    <>
+                        <button className="edit-button" onClick={() => setIsEditing(true)}>수정</button>
+                        <button className="delete-button" onClick={() => onDelete(comment.id)}>삭제</button>
+                    </>
+                )}
             </div>
         </div>
     );

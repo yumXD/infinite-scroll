@@ -15,14 +15,15 @@ interface CommentListProps {
 
 function CommentList({ comments, onDelete, onUpdate }: CommentListProps) {
     return (
-        <div>
-            {comments.length > 0 ? (
-                comments.map((comment) => (
+        <div className="comment-list-container">
+            <h3 className="comment-list-header">
+                댓글 {comments.length > 0 ? `(${comments.length})` : '없음'}
+            </h3>
+            <div className="comment-list">
+                {comments.map((comment) => (
                     <CommentItem key={comment.id} comment={comment} onDelete={onDelete} onUpdate={onUpdate} />
-                ))
-            ) : (
-                <p>아직 댓글이 없습니다. 첫 번째 댓글을 남겨보세요!</p>
-            )}
+                ))}
+            </div>
         </div>
     );
 }
