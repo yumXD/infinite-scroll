@@ -18,6 +18,13 @@ function CommentItem({comment, onDelete, onUpdate}: CommentItemProps) {
         setIsEditing(false);
     };
 
+    const handleDelete = () => {
+        const confirmDelete = window.confirm('이 댓글을 삭제하시겠습니까?');
+        if (confirmDelete) {
+            onDelete(comment.id);
+        }
+    };
+
     return (
         <div className="comment-item">
             <div className="comment-header">
@@ -33,7 +40,7 @@ function CommentItem({comment, onDelete, onUpdate}: CommentItemProps) {
                     ) : (
                         <>
                             <button className="edit-button" onClick={() => setIsEditing(true)}>수정</button>
-                            <button className="delete-button" onClick={() => onDelete(comment.id)}>삭제</button>
+                            <button className="delete-button" onClick={handleDelete}>삭제</button>
                         </>
                     )}
                 </div>

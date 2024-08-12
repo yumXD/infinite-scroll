@@ -13,10 +13,12 @@ function CommentForm({onAddComment, formId = 'default'}: CommentFormProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (text.trim()) {
-            onAddComment(text);
-            setText('');
+        if (text.trim() === '') {
+            alert('댓글을 입력하세요.');
+            return;
         }
+        onAddComment(text);
+        setText('');
     };
 
     return (
