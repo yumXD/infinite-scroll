@@ -18,12 +18,14 @@ function CommentForm({ onAddComment }: CommentFormProps) {
 
     return (
         <form onSubmit={handleSubmit} className="comment-form">
-            <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="댓글을 입력하세요..."
-            />
-            <button type="submit">댓글 등록</button>
+        <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="댓글을 입력하세요..."
+        />
+            <button type="submit" className="submit-comment-button">
+                댓글 등록
+            </button>
         </form>
     );
 }

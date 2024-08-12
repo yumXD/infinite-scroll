@@ -12,24 +12,24 @@
     border: 1px solid #ddd;
     font-size: 1em;
     box-sizing: border-box;
+    resize: none;
 }
 
-.comment-form button {
+.comment-form .submit-comment-button {
     margin-top: 10px;
     padding: 10px 20px;
     border-radius: 4px;
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: #f0e68c;
+    color: #333;
     cursor: pointer;
     border: none;
     font-size: 1em;
-    width: 100%;
-    box-sizing: border-box;
     transition: background-color 0.3s ease;
+    width: 100%;
 }
 
-.comment-form button:hover {
-    background-color: #45a049;
+.comment-form .submit-comment-button:hover {
+    background-color: #e6d479;
 }
 
 @media (max-width: 768px) {
