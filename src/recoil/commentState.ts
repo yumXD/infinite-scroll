@@ -12,11 +12,6 @@ export const commentListState = atom<Comment[]>({
     default: [],
 });
 
-export const commentFormVisibilityState = atom<boolean>({
-    key: 'commentFormVisibilityState',
-    default: false,
-});
-
 export const isEditingState = atomFamily<boolean, number>({
     key: 'isEditingState',
     default: false,

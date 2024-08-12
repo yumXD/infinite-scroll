@@ -8,7 +8,9 @@ import PlaceDescription from '../components/place/PlaceDescription';
 import PlaceImages from '../components/place/PlaceImages';
 import CommentList from '../components/comment/CommentList';
 import CommentForm from '../components/comment/CommentForm';
-import {commentFormVisibilityState, commentListState} from "../recoil/commentState";
+import {commentListState} from "../recoil/commentState";
+import {isModalVisibleState} from "../recoil/modalState";
+import Modal from "../components/Modal";
 import '../styles/PlaceDetail.css';
 
 interface Comment {
@@ -19,11 +21,11 @@ interface Comment {
 }
 
 function PlaceDetail() {
-    const { name } = useParams<{ name: string }>();
+    const {name} = useParams<{ name: string }>();
     const places = useRecoilValue(placeListState);
     const place = places.find((place) => place.name === name);
-    const [comments, setComments] = useRecoilState<Comment[]>(commentListState);
-    const [isFormVisible, setIsFormVisible] = useRecoilState(commentFormVisibilityState);
+    const [comments, setComments] = useRecoilState(commentListState);
+    const [isModalVisible, setIsModalVisible] = useRecoilState(isModalVisibleState);
 
     useEffect(() => {
         const storedComments = JSON.parse(localStorage.getItem(`comments-${name}`) || '[]');
@@ -43,6 +45,7 @@ function PlaceDetail() {
             createdAt: new Date().toLocaleString(),
         };
         setComments([newComment, ...comments]);
+        setIsModalVisible(false);
     };
 
     const handleDeleteComment = (commentId: number) => {
@@ -59,9 +62,8 @@ function PlaceDetail() {
         );
     };
 
-    const toggleFormVisibility = () => {
-        setIsFormVisible(!isFormVisible);
-    };
+    const openModal = () => setIsModalVisible(true);
+    const closeModal = () => setIsModalVisible(false);
 
     return (
         <div className="place-detail-container">
@@ -80,14 +82,15 @@ function PlaceDetail() {
                 </div>
             </div>
             <div className="place-detail-comments">
-                <button className="toggle-comment-form-button" onClick={toggleFormVisibility}>
-                    {isFormVisible ? '댓글 폼 닫기' : '댓글 달기'}
+                <button className="toggle-comment-form-button" onClick={openModal}>
+                    댓글 달기
                 </button>
-                {isFormVisible && (
-                    <CommentForm onAddComment={handleAddComment} />
-                )}
                 <CommentList comments={comments} onDelete={handleDeleteComment} onUpdate={handleUpdateComment} />
             </div>
+
+            <Modal isVisible={isModalVisible} onClose={closeModal}>
+                <CommentForm onAddComment={handleAddComment} />
+            </Modal>
         </div>
     );
 }
