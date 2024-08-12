@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentItem from './CommentItem';
+import '../../styles/CommentList.css';
 
 interface Comment {
     id: number;
@@ -9,14 +10,19 @@ interface Comment {
 interface CommentListProps {
     comments: Comment[];
     onDelete: (id: number) => void;
+    onUpdate: (id: number, newText: string) => void;
 }
 
-function CommentList({ comments, onDelete }: CommentListProps) {
+function CommentList({ comments, onDelete, onUpdate }: CommentListProps) {
     return (
         <div>
-            {comments.map((comment) => (
-                <CommentItem key={comment.id} comment={comment} onDelete={onDelete} />
-            ))}
+            {comments.length > 0 ? (
+                comments.map((comment) => (
+                    <CommentItem key={comment.id} comment={comment} onDelete={onDelete} onUpdate={onUpdate} />
+                ))
+            ) : (
+                <p>아직 댓글이 없습니다. 첫 번째 댓글을 남겨보세요!</p>
+            )}
         </div>
     );
 }

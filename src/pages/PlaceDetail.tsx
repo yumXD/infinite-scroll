@@ -1,7 +1,7 @@
-import React from 'react';
-import {useParams} from 'react-router-dom';
-import {useRecoilValue} from 'recoil';
-import {placeListState} from '../recoil/placeState';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { placeListState } from '../recoil/placeState';
 import PlaceName from '../components/place/PlaceName';
 import PlaceAddress from '../components/place/PlaceAddress';
 import PlaceDescription from '../components/place/PlaceDescription';
@@ -21,11 +21,20 @@ function PlaceDetail() {
     const place = places.find((place) => place.name === name);
     const [comments, setComments] = React.useState<Comment[]>([]);
 
+    useEffect(() => {
+        const storedComments = JSON.parse(localStorage.getItem(`comments-${name}`) || '[]');
+        setComments(storedComments);
+    }, [name]);
+
+    useEffect(() => {
+        localStorage.setItem(`comments-${name}`, JSON.stringify(comments));
+    }, [comments, name]);
+
     if (!place) return <div>Loading...</div>;
 
     const handleAddComment = (text: string) => {
         const newComment = {
-            id: comments.length + 1,
+            id: Date.now(),
             text,
         };
         setComments([...comments, newComment]);
@@ -33,6 +42,14 @@ function PlaceDetail() {
 
     const handleDeleteComment = (commentId: number) => {
         setComments(comments.filter((comment) => comment.id !== commentId));
+    };
+
+    const handleUpdateComment = (commentId: number, newText: string) => {
+        setComments(
+            comments.map((comment) =>
+                comment.id === commentId ? { ...comment, text: newText } : comment
+            )
+        );
     };
 
     return (
@@ -52,7 +69,8 @@ function PlaceDetail() {
                 </div>
             </div>
             <div className="place-detail-comments">
-                <CommentList comments={comments} onDelete={handleDeleteComment} />
+                <h2>댓글</h2>
+                <CommentList comments={comments} onDelete={handleDeleteComment} onUpdate={handleUpdateComment} />
                 <CommentForm onAddComment={handleAddComment} />
             </div>
         </div>
