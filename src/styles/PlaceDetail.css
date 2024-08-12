@@ -2,18 +2,42 @@
     display: flex;
     flex-direction: column;
     margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .place-detail-main {
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
+    gap: 20px;
 }
 
 .image-container {
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     height: 300px;
     position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slider-images {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.slider-image {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .place-detail-info {
@@ -23,6 +47,10 @@
     flex-direction: column;
     justify-content: space-between;
     height: 300px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .place-name-address {
@@ -30,13 +58,15 @@
     display: block;
     overflow-y: auto;
     max-height: 50%;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
 }
 
 .place-description {
     flex: 1;
     display: block;
     overflow-y: auto;
-    padding-left: 20px;
+    padding: 10px 20px;
     max-height: 50%;
 }
 
@@ -46,6 +76,11 @@
     }
 
     .image-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .slider-image {
         width: 100%;
         height: auto;
     }
