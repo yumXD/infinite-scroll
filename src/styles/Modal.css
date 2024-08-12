@@ -18,6 +18,7 @@
     max-width: 500px;
     width: 100%;
     position: relative;
+    box-sizing: border-box;
 }
 
 .modal-close-button {
@@ -28,4 +29,5 @@
     border: none;
     font-size: 1.5em;
     cursor: pointer;
+    z-index: 10;
 }
