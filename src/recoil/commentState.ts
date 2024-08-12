@@ -4,6 +4,7 @@ export interface Comment {
     id: number;
     text: string;
     createdAt: string;
+    updatedAt?: string;
 }
 
 export const commentListState = atom<Comment[]>({

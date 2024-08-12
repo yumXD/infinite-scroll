@@ -4,7 +4,7 @@ import {useRecoilState} from "recoil";
 import {editedTextState, isEditingState} from "../../recoil/commentState";
 
 interface CommentItemProps {
-    comment: { id: number; text: string; createdAt: string };
+    comment: { id: number; text: string; createdAt: string; updatedAt?: string };
     onDelete: (id: number) => void;
     onUpdate: (id: number, newText: string) => void;
 }
@@ -21,7 +21,9 @@ function CommentItem({comment, onDelete, onUpdate}: CommentItemProps) {
     return (
         <div className="comment-item">
             <div className="comment-header">
-                <span className="comment-date">{comment.createdAt}</span>
+                <span className="comment-date">
+                    {comment.updatedAt ? `수정됨: ${comment.updatedAt}` : `작성됨: ${comment.createdAt}`}
+                </span>
                 <div className="comment-actions">
                     {isEditing ? (
                         <>
