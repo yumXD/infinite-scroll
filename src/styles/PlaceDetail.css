@@ -39,3 +39,20 @@
     padding-left: 20px;
     max-height: 50%;
 }
+
+@media (max-width: 768px) {
+    .place-detail-main {
+        flex-direction: column;
+    }
+
+    .image-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .place-detail-info {
+        margin-left: 0;
+        margin-top: 20px;
+        height: auto;
+    }
+}
