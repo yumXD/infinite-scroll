@@ -14,6 +14,7 @@ import '../styles/PlaceDetail.css';
 interface Comment {
     id: number;
     text: string;
+    createdAt: string;
 }
 
 function PlaceDetail() {
@@ -35,9 +36,10 @@ function PlaceDetail() {
     if (!place) return <div>Loading...</div>;
 
     const handleAddComment = (text: string) => {
-        const newComment = {
+        const newComment: Comment = {
             id: Date.now(),
             text,
+            createdAt: new Date().toLocaleString(),
         };
         setComments([newComment, ...comments]);
     };

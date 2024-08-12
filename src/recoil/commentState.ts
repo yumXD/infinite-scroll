@@ -1,8 +1,9 @@
 import {atom, atomFamily} from 'recoil';
 
-interface Comment {
+export interface Comment {
     id: number;
     text: string;
+    createdAt: string;
 }
 
 export const commentListState = atom<Comment[]>({

@@ -4,7 +4,7 @@ import {useRecoilState} from "recoil";
 import {editedTextState, isEditingState} from "../../recoil/commentState";
 
 interface CommentItemProps {
-    comment: { id: number; text: string };
+    comment: { id: number; text: string; createdAt: string };
     onDelete: (id: number) => void;
     onUpdate: (id: number, newText: string) => void;
 }
@@ -20,6 +20,22 @@ function CommentItem({comment, onDelete, onUpdate}: CommentItemProps) {
 
     return (
         <div className="comment-item">
+            <div className="comment-header">
+                <span className="comment-date">{comment.createdAt}</span>
+                <div className="comment-actions">
+                    {isEditing ? (
+                        <>
+                            <button className="save-button" onClick={handleSave}>저장</button>
+                            <button className="cancel-button" onClick={() => setIsEditing(false)}>취소</button>
+                        </>
+                    ) : (
+                        <>
+                            <button className="edit-button" onClick={() => setIsEditing(true)}>수정</button>
+                            <button className="delete-button" onClick={() => onDelete(comment.id)}>삭제</button>
+                        </>
+                    )}
+                </div>
+            </div>
             {isEditing ? (
                 <textarea
                     className="edit-textarea"
@@ -29,19 +45,6 @@ function CommentItem({comment, onDelete, onUpdate}: CommentItemProps) {
             ) : (
                 <p className="comment-text">{comment.text}</p>
             )}
-            <div className="comment-actions">
-                {isEditing ? (
-                    <>
-                        <button className="save-button" onClick={handleSave}>저장</button>
-                        <button className="cancel-button" onClick={() => setIsEditing(false)}>취소</button>
-                    </>
-                ) : (
-                    <>
-                        <button className="edit-button" onClick={() => setIsEditing(true)}>수정</button>
-                        <button className="delete-button" onClick={() => onDelete(comment.id)}>삭제</button>
-                    </>
-                )}
-            </div>
         </div>
     );
 }

@@ -5,6 +5,7 @@ import '../../styles/CommentList.css';
 interface Comment {
     id: number;
     text: string;
+    createdAt: string;
 }
 
 interface CommentListProps {
