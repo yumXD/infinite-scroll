@@ -42,9 +42,13 @@ function PlaceDetail() {
                     <PlaceImages images={place.images} />
                 </div>
                 <div className="place-detail-info">
-                    <PlaceName name={place.name} isLink={false} />
-                    <PlaceAddress address={place.address} />
-                    <PlaceDescription description={place.description} />
+                    <div className="place-name-address">
+                        <PlaceName name={place.name} isLink={false} />
+                        <PlaceAddress address={place.address} />
+                    </div>
+                    <div className="place-description">
+                        <PlaceDescription description={place.description} />
+                    </div>
                 </div>
             </div>
             <div className="place-detail-comments">
