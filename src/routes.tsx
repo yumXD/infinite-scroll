@@ -9,7 +9,7 @@ const AppRoutes = () => {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
-                <Navbar logoSrc="logo.png"/>
+                <Navbar logoSrc="logo.png"/> {/* 배포용 */}
                 <div style={{flex: 1, overflowY: 'auto'}}>
                     <Routes>
                         <Route path="/" element={<PlaceListPage/>}/>
