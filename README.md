@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+# 무한 스크롤 장소 탐색 애플리케이션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 소개
+React와 TypeScript를 사용하여 구현한 반응형 웹 애플리케이션입니다.
+<br>
+장소 데이터를 받아와 무한 스크롤로 탐색할 수 있으며, 사용자는 각 장소에 대해 댓글을 남기고, 이미지를 확대하여 볼 수 있는 기능을 사용할 수 있습니다.
 
-## Available Scripts
+## 기술 스택
 
-In the project directory, you can run:
+- **프론트엔드**: React, TypeScript
+- **스타일링**: CSS
+- **라이브러리**: Recoil, Axios, React Router
+- **버전 관리**: Git, GitHub
 
-### `npm start`
+## 프로젝트 구조
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Comment 관련 컴포넌트**:
+    - `CommentForm`: 새로운 댓글을 입력받아 추가하는 폼 컴포넌트
+    - `CommentItem`: 개별 댓글 항목을 표시하고, 수정 또는 삭제 기능을 제공하는 컴포넌트
+    - `CommentList`: 댓글 목록을 표시하는 컴포넌트
+- **Place 관련 컴포넌트**:
+    - `PlaceAddress`: 장소의 주소를 표시하는 컴포넌트
+    - `PlaceCard`: 썸네일 이미지, 이름, 주소를 포함한 카드 형식의 정보 표시 컴포넌트
+    - `PlaceDescription`: 장소의 설명을 텍스트로 표시하는 컴포넌트
+    - `PlaceImages`: 장소의 이미지를 슬라이드 쇼와 모달 뷰로 표시하는 컴포넌트
+    - `PlaceList`: 여러 장소를 리스트 형태로 표시하며, 무한 스크롤을 지원하는 컴포넌트
+    - `PlaceName`: 장소의 이름을 텍스트로 표시하며, 링크를 통해 상세 페이지로 이동할 수 있는 컴포넌트
+    - `PlaceThumbnail`: 장소의 썸네일 이미지를 표시하는 컴포넌트
+- **기타 컴포넌트**:
+    - `Filter`: 사용자가 선택한 카테고리별로 데이터를 필터링할 수 있도록 도와주는 필터링 컴포넌트
+    - `Footer`: 웹 애플리케이션의 하단에 위치하는 푸터 컴포넌트
+    - `Navbar`: 웹 애플리케이션의 상단에 위치하는 네비게이션 바 컴포넌트
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## 구현한 것
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 무한 스크롤
+- **Intersection Observer API**를 사용하여, 사용자가 스크롤할 때마다 데이터를 동적으로 로드하는 기능을 구현했습니다.
 
-### `npm run build`
+### 댓글 기능
+- 로컬 상태와 로컬 스토리지를 활용하여 댓글을 생성, 수정, 삭제할 수 있습니다. 
+- 댓글 데이터는 로컬 스토리지에 저장되어 새로고침 후에도 유지됩니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 필터링 기능
+- **Recoil** 상태 관리 라이브러리를 사용하여 카테고리별로 장소 데이터를 필터링할 수 있는 기능을 구현했습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 이미지 확대
+- 장소 이미지의 슬라이드 쇼를 모달 창으로 구현하여, 이미지를 클릭하면 확대해서 볼 수 있는 기능을 추가했습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 개선한 것
 
-### `npm run eject`
+### 무한 스크롤 성능
+- 초기에는 스크롤 이벤트 리스너를 사용하여 무한 스크롤을 구현했으나, 성능 저하 문제가 발생했습니다. 
+- 이를 해결하기 위해 **Intersection Observer API**를 도입하여 불필요한 이벤트 트리거를 줄이고 성능을 크게 개선했습니다. 
+- 렌더링과 페인팅 성능에서 각각 30%와 23%의 향상이 있었습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 성과 및 배운 점
+1. **독립적인 개발 경험**: 이 프로젝트를 혼자서 모든 과정을 담당하며, 기획부터 구현까지 스스로 해결하는 능력을 기를 수 있었습니다.
+2. **TypeScript 학습**: TypeScript를 사용하여 코드 작성 중 발생할 수 있는 오류를 미리 방지하고, 더 안전하고 유지보수하기 쉬운 코드를 작성할 수 있게 되었습니다. 
+3. **Recoil 상태 관리**: Recoil을 사용해 글로벌 상태 관리를 구현하면서, 상태 관리의 복잡함을 줄이고 컴포넌트 간 데이터 공유를 쉽게 할 수 있었습니다. 
+4. **React 컴포넌트 기반 개발**: React의 컴포넌트 구조를 사용하여 복잡한 UI를 관리하는 방법을 익혔습니다. 
+5. **비동기 API 통신**: Axios를 사용해 비동기 API 요청을 처리하며, 비동기 프로그래밍의 중요성을 깊이 이해하게 되었습니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 성능 이슈 및 개선
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **무한 스크롤 성능 이슈 해결**: 초기 구현 시 스크롤 이벤트 리스너를 사용하여 무한 스크롤 기능을 구현했으나, 많은 요소가 로드될수록 성능 저하가 발생하는 문제가 있었습니다. 이를 해결하기 위해 **Intersection Observer API**를 도입하여 성능을 크게 개선했습니다.
+- **성과**: Intersection Observer API를 사용했을 때 전체적으로 `10%의 성능 개선`이 있었으며, 특히 렌더링과 페인팅 성능에서 각각 30%와 23%의 향상이 있었습니다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 개발 인원
 
-## Learn More
+- **프론트엔드**: 1명 (최준성)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
