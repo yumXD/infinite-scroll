@@ -70,3 +70,14 @@ React와 TypeScript를 사용하여 구현한 반응형 웹 애플리케이션�
 
 - **프론트엔드**: 1명 (최준성)
 
+## 이미지
+
+| <img src="https://github.com/yumXD/react-ts/blob/image-storage/images/ms.png?raw=true" alt="ms" width="250" height="400"> | <img src="https://github.com/yumXD/react-ts/blob/image-storage/images/ws.png?raw=true" alt="ws" width="250" height="400">|
+|-------------------------------------------|-------------------------------------------|
+
+
+## 아키텍쳐
+
+<img src="https://github.com/yumXD/react-ts/blob/image-storage/images/architecture.png?raw=true" alt="architecture" width="300" height="300">
+
+
